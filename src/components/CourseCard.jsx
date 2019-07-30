@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-const Curso = ({id, image, title, price, profesor}) => (
+const CourseCard = ({id, image, title, price, professor}) => (
     <article className="card" id={title}>
         <div className="img-container s-ratio-16-9 s-radius-tr s-radius-tl">
             <Link to={`/cursos/${id}`}>
@@ -18,7 +18,7 @@ const Curso = ({id, image, title, price, profesor}) => (
                         <img src="https://drupal.ed.team/sites/default/files/imagenes-cdn-edteam/2019-03/paula-leon_400x400.png" alt="AAA" />
                     </div>
                     </div>
-                    <span className="small">{profesor}</span>
+                    <span className="small">{professor}</span>
                 </div>
             </div>
             <div className="s-main-center">
@@ -27,16 +27,16 @@ const Curso = ({id, image, title, price, profesor}) => (
         </div>
     </article>
 );
-Curso.propTypes = {
+CourseCard.propTypes = {
     title : propTypes.string,
     image : propTypes.string,
     price : propTypes.string,
-    profesor : propTypes.string,
+    professor : propTypes.string,
 }
-Curso.defaultProps = {
+CourseCard.defaultProps = {
     title : 'No se encontró titulo',
     image : 'http://blog.davidrojo.es/wp-content/uploads/2011/04/file-not-found.jpg',
     price : '--',
     profesor : ''
 }
-export default Curso;
+export default CourseCard;
