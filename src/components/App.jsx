@@ -1,13 +1,13 @@
 import React from 'react';
-import Banner from './banner';
-import Form from './Form';
-import CurseGrid from './CurseGrid';
-import Course from './Course';
+import Banner from './Banner/banner';
+import Form from './Form/Form';
+import CurseGrid from './Course/CurseGrid';
+import Course from './Course/Course';
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import Header from './Header';
-import History from './History';
-import Users from './Users';
+import Header from './Header/Header';
+import History from './History/History';
+import Users from './Users/Users';
 
 const App = () => 
     <Router>
