@@ -7,6 +7,7 @@ const Nav = () => (
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/cursos">Cursos</NavLink></li>
                 <li><NavLink to="/formulario">Formulario</NavLink></li>
+                <li><NavLink to="/usuarios">usuarios</NavLink></li>
             </ul>
         </nav>
     </Fragment>
