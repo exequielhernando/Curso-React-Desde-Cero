@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import UsersCard from './UsersCard';
+import axios from 'axios';
+import UsersGrid from './UsersGrid';
 
 class Users extends Component{
     constructor(props){
@@ -9,35 +10,29 @@ class Users extends Component{
             users: []
         }
     }
+    // FETCH
+    // componentDidMount(){
+    //     fetch('https://jsonplaceholder.typicode.com/users', {method: 'get'} )
+    //     .then(response => response.json())
+    //     .then(json => {
+    //         this.setState({
+    //             users: json
+    //         })
+    //     })
+    // }
+
+    //AXIOS
     componentDidMount(){
-        fetch('https://jsonplaceholder.typicode.com/users', {method: 'get'} )
-        .then(response => response.json())
-        .then(json => {
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then(response => 
             this.setState({
-                users: json
-            })
-        })
+                users: response.data
+            }))
     }
 
     render(){
         const { users } = this.state
-        return(
-            <div className="ed-grid">
-                <h1>
-                    Pagina Usuarios
-                </h1>
-                <div className="ed-grid s-grid-2 m-grid-3 l-grid-4">
-                    {users.map(user => (
-                        <UsersCard 
-                            key={user.id} 
-                            name={user.name}
-                            username={user.username}
-                            email={user.email}
-                        />
-                    ))}
-                </div>
-            </div>
-        )
+        return <UsersGrid users={users}/>
     }
 }
 export default Users;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from './Banner/banner';
 import Form from './Form/Form';
-import CurseGrid from './Course/CurseGrid';
+import Courses from './Course/Courses';
 import Course from './Course/Course';
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
@@ -15,7 +15,7 @@ const App = () =>
         <Switch>
             <Route path="/" exact component={Banner} />
             <Route path="/cursos/:id" component={Course} />
-            <Route path="/cursos" component={CurseGrid} />
+            <Route path="/cursos" component={Courses} />
             <Route path="/historial/:valor" component={History} />
             <Route path="/historial" component={History} />
             <Route path="/usuarios" component={Users} />
