@@ -1,7 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-const CourseCard = ({id, image, title, price, professor}) => (
+import { addToCart } from '../../redux/actionCreators';
+import { connect } from 'react-redux';
+
+const CourseCard = ({id, image, title, price, professor, addCourseToCart, cart }) => (
     <article className="card" id={title}>
         <div className="img-container s-ratio-16-9 s-radius-tr s-radius-tl">
             <Link to={`/cursos/${id}`}>
@@ -22,7 +25,15 @@ const CourseCard = ({id, image, title, price, professor}) => (
                 </div>
             </div>
             <div className="s-main-center">
-                <a className="button--ghost-alert button--tiny" href="https://ed.team">{`$ ${price}`}</a>
+                <button 
+                    className="button--ghost-alert button--tiny"
+                    onClick={ () => addCourseToCart(id)}
+                >
+                    {cart.find(a => a === id) 
+                        ? `Curso en el carrito`
+                        : `$ ${price} USD`
+                    }
+                </button>
             </div>
         </div>
     </article>
@@ -39,4 +50,15 @@ CourseCard.defaultProps = {
     price : '--',
     profesor : ''
 }
-export default CourseCard;
+
+
+const mapDispatchToProps = dispatch => ({
+    addCourseToCart(id) {
+        dispatch(addToCart(id))
+    }
+}) 
+const mapStateToProps = state => ({
+    cart: state.cart
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseCard);

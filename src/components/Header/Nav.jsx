@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
+import CartCounter from '../CartCounter/CartCounter';
 const Nav = () => (
     <Fragment>
         <nav className="main-menu" id="main-menu">
@@ -8,6 +9,7 @@ const Nav = () => (
                 <li><NavLink to="/cursos">Cursos</NavLink></li>
                 <li><NavLink to="/formulario">Formulario</NavLink></li>
                 <li><NavLink to="/usuarios">usuarios</NavLink></li>
+                <CartCounter></CartCounter>
             </ul>
         </nav>
     </Fragment>
