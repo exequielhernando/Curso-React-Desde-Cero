@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-const useCourse = id => {
+const useCourse = ({id}) => {
     const [course, setCourse ] = useState({})
 
     useEffect( () => {            
@@ -9,7 +9,7 @@ const useCourse = id => {
         .then (response => 
             setCourse(response.data)    
         );
-    }, [])
+    },)
 
     return course;
 }

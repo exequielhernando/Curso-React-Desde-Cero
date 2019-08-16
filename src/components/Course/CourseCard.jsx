@@ -1,10 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../../redux/actionCreators';
+import { addToCart, removeToCart } from '../../redux/actionCreators';
 import { connect } from 'react-redux';
 
-const CourseCard = ({id, image, title, price, professor, addCourseToCart, cart }) => (
+const CourseCard = ({id, image, title, price, professor, addCourseToCart, cart , removeCourseToCart}) => (
     <article className="card" id={title}>
         <div className="img-container s-ratio-16-9 s-radius-tr s-radius-tl">
             <Link to={`/cursos/${id}`}>
@@ -25,15 +25,21 @@ const CourseCard = ({id, image, title, price, professor, addCourseToCart, cart }
                 </div>
             </div>
             <div className="s-main-center">
-                <button 
-                    className="button--ghost-alert button--tiny"
-                    onClick={ () => addCourseToCart(id)}
-                >
-                    {cart.find(a => a === id) 
-                        ? `Curso en el carrito`
-                        : `$ ${price} USD`
-                    }
-                </button>
+                {cart.find(a => a === id) 
+                    ?<button 
+                        className="button--ghost-alert button--tiny"
+                        onClick={ () => removeCourseToCart(id)}
+                    >
+                       Remover en el carrito
+                     </button>  
+                    :<button 
+                        className="button--ghost-alert button--tiny"
+                        onClick={ () => addCourseToCart(id)}
+                    >
+                        {`$ ${price} USD`}
+                    </button>
+                }
+                
             </div>
         </div>
     </article>
@@ -55,10 +61,13 @@ CourseCard.defaultProps = {
 const mapDispatchToProps = dispatch => ({
     addCourseToCart(id) {
         dispatch(addToCart(id))
+    },
+    removeCourseToCart(id) {
+        dispatch(removeToCart(id))
     }
 }) 
 const mapStateToProps = state => ({
-    cart: state.cart
+    cart: state.cartReducer.cart
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseCard);

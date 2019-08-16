@@ -1,25 +1,10 @@
-import React, { Component } from 'react';
-import Axios from 'axios';
+import React from 'react';
 import CourseGrid from './CourseGrid';
+import { connect } from 'react-redux';
 
-class Courses extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            courses: []
-        }
-    }
-    componentDidMount(){
-        Axios.get('http://my-json-server.typicode.com/exequielhernando/json-db/cursos')
-        .then (response => 
-            this.setState({
-                courses: response.data
-            })    
-        );
-    }
-    render(){
-        const { courses } = this.state;
-        return <CourseGrid courses={courses}/>
-    }
-}
-export default Courses;
+const Courses = ({ courses }) => <CourseGrid courses={courses}/>;
+
+const mapStateToProps = state => ({
+    courses: state.coursesReducer.courses
+})
+export default connect(mapStateToProps, null)(Courses);

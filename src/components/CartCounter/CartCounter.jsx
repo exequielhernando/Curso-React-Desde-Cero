@@ -10,13 +10,11 @@ const CartCounter = ({ cartLength }) => (
 )
 const mapStateToProps = state => (
     {
-        cartLength: state.cart
+        cartLength: state.cartReducer.cart
     }
 )
 
-const mapDispatchToProps = () => {
-  
-}
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(CartCounter);
+
+export default connect(mapStateToProps,{})(CartCounter);
